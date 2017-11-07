@@ -1,5 +1,5 @@
 class NewsHeadlines::Source
-  attr_accessor :name, :description, :country, :category, :articles
+  attr_accessor :name, :description, :country, :category, :url, :articles
   @@all = []
 
   def self.new_from_json(source)
@@ -8,16 +8,18 @@ class NewsHeadlines::Source
       source["description"],
       source["country"],
       source["category"],
+      source["url"]
     )
   end
   #thought of incorporating directly into #initialize but realized this is more flexible, allows for future use of this class to create sources from different non-api data sources?
 
 
-  def initialize(name = nil, description = nil, country = nil, category = nil)
+  def initialize(name = nil, description = nil, country = nil, category = nil, url = nil)
     @name = name
     @description = description
     @country = country
     @category = category
+    @url = url
     @@all << self
   end
   #refactor:attempt to use mass assignment(use source hash info)
