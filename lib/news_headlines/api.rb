@@ -10,7 +10,6 @@ class NewsHeadlines::Api
     self.get_sources.each do |news_source|
       NewsHeadlines::Source.new_from_json(news_source)
     end
-    binding.pry
   end
 
   #article creation method:
