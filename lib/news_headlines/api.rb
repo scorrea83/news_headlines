@@ -14,11 +14,17 @@ class NewsHeadlines::Api
     end
   end
 
-  def self.get_articles#(news_source)
-    doc = RestClient.get('https://newsapi.org/v1/articles?source=usa-today&apiKey=dfdb90ce65d34e188575203af7c109f8')
+  def self.make_articles(news_source)
+    #Called by CLI when user selects source to view articles for.
+    #Needs to be "id" value of source,
+    doc = RestClient.get("https://newsapi.org/v1/articles?source=#{news_source}&apiKey=dfdb90ce65d34e188575203af7c109f8")
     articles = JSON.parse(doc)
-    articles["articles"]
+    articles["articles"].each do |article|
+      NewsHeadlines::Article.new_from_json(article)
+    end
   end
+
+
   #article creation method:
     # takes in argument of news source (id or name?)
     # uses RestClient and JSON to get and parse from newsapi the articles belonging to news source
@@ -27,4 +33,4 @@ class NewsHeadlines::Api
 
 end
 
-#sources = NewsHeadlines::Api.source_list
+#sources = NewsHeadlines::Api.make_news_sources
