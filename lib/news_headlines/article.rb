@@ -21,8 +21,9 @@ class NewsHeadlines::Article
     )
   end
 
-  def self.add_news_source(news_source)
+  def add_news_source(news_source)
     @news_source = news_source
+    binding.pry
   end
 
   def self.all

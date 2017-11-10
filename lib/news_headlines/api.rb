@@ -12,7 +12,7 @@ class NewsHeadlines::Api
     # Might be better to be called once user selects source.
     self.get_sources.each do |news_source|
       NewsHeadlines::Source.new_from_json(news_source)
-      #add a line to #make_articles?  
+      #add a line to #make_articles?
     end
   end
 
@@ -22,19 +22,12 @@ class NewsHeadlines::Api
     #ToDo: change apiKey to some kind of module/class/something constant
     doc = RestClient.get("https://newsapi.org/v1/articles?source=#{news_source.id}&apiKey=dfdb90ce65d34e188575203af7c109f8")
     articles = JSON.parse(doc)
-    articles["articles"].each do |article|
-      NewsHeadlines::Article.new_from_json(article)
-      NewsHeadlines::Article.add_news_source(news_source)
+    articles["articles"].each do |article_hash|
+      article = NewsHeadlines::Article.new_from_json(article_hash)
+      article.add_news_source(news_source)
       binding.pry
     end
   end
-
-
-  #article creation method:
-    # takes in argument of news source (id or name?)
-    # uses RestClient and JSON to get and parse from newsapi the articles belonging to news source
-    # sets above array to a local variable
-    # iterates through local variable array sends each element/article to NewsHeadlines::Article with Article method to create Article objects from JSON (similar to Source.new_from_json)
 
 end
 
