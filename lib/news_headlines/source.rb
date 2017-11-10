@@ -2,8 +2,6 @@ class NewsHeadlines::Source
   attr_accessor :name, :description, :country, :category, :url, :articles, :id
   @@all = []
 
-  #TOdo Deal with @articles.  needs to be set to empty [] during instantiation to then be able to add artiles as they are created.
-
   def self.new_from_json(source)
     self.new(
       source["name"],
