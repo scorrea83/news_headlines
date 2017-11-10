@@ -25,6 +25,7 @@ class NewsHeadlines::Api
     articles["articles"].each do |article_hash|
       article = NewsHeadlines::Article.new_from_json(article_hash)
       article.add_news_source(news_source)
+      news_source.add_article(article)
       binding.pry
     end
   end
