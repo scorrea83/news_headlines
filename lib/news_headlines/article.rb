@@ -21,6 +21,10 @@ class NewsHeadlines::Article
     )
   end
 
+  def self.add_news_source(news_source)
+    @news_source = news_source
+  end
+
   def self.all
     @@all
   end
