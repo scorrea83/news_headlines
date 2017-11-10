@@ -4,10 +4,10 @@ require 'pry'
 
 
 require "news_headlines/version"
+require_relative "./news_headlines/cli"
 require_relative "./news_headlines/api"
 require_relative "./news_headlines/source"
 require_relative "./news_headlines/article"
-require_relative "./news_headlines/cli"
 
 # module NewsHeadlines
 #   # Your code goes here...
