@@ -1,5 +1,5 @@
 class NewsHeadlines::Source
-  
+
   CATEGORIES = ["business", "entertainment", "gaming", "general", "music", "politics", "science-and-nature", "sport", "technology"]
 
   attr_accessor :name, :description, :country, :category, :url, :articles, :id
@@ -32,6 +32,10 @@ class NewsHeadlines::Source
 
   def self.all
     @@all
+  end
+
+  def self.find_by_category(category)
+    self.all.select { |news_source| news_source.category == category}
   end
 
   def add_article(article)
