@@ -28,13 +28,21 @@ class NewsHeadlines::CLI
     input = gets.strip.to_i
 
     #list sources for selected category
-    # => list_sources()
+    # => list_sources(input)
 
   end
 
   def list_categories
     NewsHeadlines::Source::CATEGORIES.each.with_index(1) { |category, index| puts "#{index}. #{category}"}
   end
+
+  def list_sources(input)
+    category = NewsHeadlines::Source::CATEGORIES[input - 1]
+    NewsHeadlines::Source.find_by_category(category).each.with_index(1) do |news_source, index|
+      puts "#{index}. #{news_source.name}"
+    end
+  end
+
 
   def goodbye
     puts "Now displaying and running #goodbye method."
