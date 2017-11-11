@@ -53,12 +53,30 @@ class NewsHeadlines::CLI
 
   def list_articles(input)
     news_source = @source_list[input -1 ]
-    @article_list = NewsHeadlines::Api.make_articles(news_source)
+    binding.pry
+    NewsHeadlines::Api.make_articles(news_source)
+    @article_list = news_source.articles
     @article_list.each.with_index(1) do |article, index|
-      puts "#{index}. #{article["title"]}"
+      puts "#{index}. #{article.title}"
     end
   end
 
+  def article_details(input)
+    article = @article_list[input - 1]
+    binding.pry
+    puts ""
+    # puts "----------- #{restaurant.name} - #{restaurant.position} -----------"
+    puts ""
+    puts "Title:           #{article.title}"
+    puts "Author:          #{article.author}"
+    puts "Url:             #{article.url}"
+    puts "Published at:    #{article.published_at}"
+    puts ""
+    puts "---------------Summary--------------"
+    puts ""
+    puts "#{article.description}"
+    puts ""
+  end
 
   def goodbye
     puts "Now displaying and running #goodbye method."
