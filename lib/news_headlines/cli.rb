@@ -14,7 +14,8 @@ class NewsHeadlines::CLI
   attr_accessor :source_list, :article_list
 
   def call
-    #NewsHeadlines::Api.make_news_sources??
+    NewsHeadlines::Api.make_news_sources
+    binding.pry
     puts "Welcome to News Headlines!"
     puts "Here you can view the latest live headlines from many news sources from around the world!"
     puts ""
@@ -50,6 +51,13 @@ class NewsHeadlines::CLI
     end
   end
 
+  def list_articles(input)
+    news_source = @source_list[input -1 ]
+    @article_list = NewsHeadlines::Api.make_articles(news_source)
+    @article_list.each.with_index(1) do |article, index|
+      puts "#{index}. #{article["title"]}"
+    end
+  end
 
 
   def goodbye
