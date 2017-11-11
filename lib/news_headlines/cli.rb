@@ -11,24 +11,30 @@
 # system("open #{@newsletter.articles[input.to_i-1].url}")
 class NewsHeadlines::CLI
 
+  attr_accessor :source_list, :article_list
+
   def call
     #NewsHeadlines::Api.make_news_sources??
     puts "Welcome to News Headlines!"
     puts "Here you can view the latest live headlines from many news sources from around the world!"
     puts ""
     menu
+    binding.pry
     goodbye
   end
 
   def menu
-    puts "Now diplaying and running #menu method."
-    puts "To begin, select from the following news source categories.  Type the number of the category you wish to select."
-    list_categories
     input = nil
-    input = gets.strip.to_i
+    puts "Now diplaying and running #menu method."
+    puts "To begin, select from the following news source categories."
+    puts ""
+    list_categories
+    puts "Type the number of the category whose news sources wish to view or type 'exit'."
+    input = gets.to_i
+    list_sources(input)
+    puts "Type the number of the news source whose headlines you wish to view or type 'exit'."
 
-    #list sources for selected category
-    # => list_sources(input)
+
 
   end
 
@@ -38,10 +44,12 @@ class NewsHeadlines::CLI
 
   def list_sources(input)
     category = NewsHeadlines::Source::CATEGORIES[input - 1]
-    NewsHeadlines::Source.find_by_category(category).each.with_index(1) do |news_source, index|
+    @source_list = NewsHeadlines::Source.find_by_category(category)
+    @source_list.each.with_index(1) do |news_source, index|
       puts "#{index}. #{news_source.name}"
     end
   end
+
 
 
   def goodbye
@@ -49,4 +57,4 @@ class NewsHeadlines::CLI
   end
 
 end
-#   NewsHeadlines::CLI.new.call
+# NewsHeadlines::CLI.new.call
