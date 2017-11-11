@@ -1,4 +1,7 @@
 class NewsHeadlines::Source
+  
+  CATEGORIES = ["business", "entertainment", "gaming", "general", "music", "politics", "science-and-nature", "sport", "technology"]
+
   attr_accessor :name, :description, :country, :category, :url, :articles, :id
   @@all = []
 

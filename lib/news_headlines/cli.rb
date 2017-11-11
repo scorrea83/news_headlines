@@ -24,12 +24,16 @@ class NewsHeadlines::CLI
     puts "Now diplaying and running #menu method."
     puts "To begin, select from the following news source categories.  Type the number of the category you wish to select."
     list_categories
-    # input = nil
+    input = nil
+    input = gets.strip.to_i
+
+    #list sources for selected category
+    # => list_sources()
+
   end
 
   def list_categories
-    categories = ["business", "entertainment", "gaming", "general", "music", "politics", "science-and-nature", "sport", "technology"]
-    categories.each.with_index(1) { |category, index| puts "#{index}. #{category}"}
+    NewsHeadlines::Source::CATEGORIES.each.with_index(1) { |category, index| puts "#{index}. #{category}"}
   end
 
   def goodbye
