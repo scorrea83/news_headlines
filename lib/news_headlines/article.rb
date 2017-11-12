@@ -2,7 +2,7 @@ class NewsHeadlines::Article
   attr_accessor :title, :author, :news_source, :description, :url, :published_at
   @@all = []
 
-  def initialize(title = nil, author = nil, description = nil, url = nil, published_at = nil)
+  def initialize(title = nil, author = nil, description = nil, url = nil, published_at = "unavailable")
     @title = title
     @author = author
     @description = description
@@ -10,20 +10,23 @@ class NewsHeadlines::Article
     @published_at = published_at
     @@all << self
   end
-  #FIX: news_source needs to be Source object, maybe create a #add_source method that can then be called at the same time the article object is being created in the API.make_articles method?
+
   def self.new_from_json(article)
     self.new(
       article["title"],
       article["author"],
       article["description"],
       article["url"],
-      article["published_at"]
+      article["publishedAt"]
     )
+  end
+
+  def self.find_article(article_title)
+    self.all.find {|article| article.title == article_title}
   end
 
   def add_news_source(news_source)
     @news_source = news_source
-    binding.pry
   end
 
   def self.all
