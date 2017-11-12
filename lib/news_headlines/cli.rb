@@ -108,7 +108,9 @@ class NewsHeadlines::CLI
   end
 
   def goodbye
-    puts "Now displaying and running #goodbye method."
+    puts "---------------------------------------------------------------"
+    puts "Have a good day and come back for more news headlines!"
+    puts "---------------------------------------------------------------"
   end
 
 end
