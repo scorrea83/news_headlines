@@ -1,4 +1,5 @@
 class NewsHeadlines::Api
+# Does it make more sense to make this a module instead since there no instances of this class being created (no attributes, just behavior)?
 
   def self.get_sources
     doc = RestClient.get('https://newsapi.org/v1/sources?language=en')
@@ -23,10 +24,11 @@ class NewsHeadlines::Api
     doc = RestClient.get("https://newsapi.org/v1/articles?source=#{news_source.id}&apiKey=dfdb90ce65d34e188575203af7c109f8")
     articles = JSON.parse(doc)
     articles["articles"].each do |article_hash|
-      article = NewsHeadlines::Article.new_from_json(article_hash)
-      article.add_news_source(news_source)
-      news_source.add_article(article)
-      binding.pry
+      if !NewsHeadlines::Article.find_article(article_hash["title"])
+        article = NewsHeadlines::Article.new_from_json(article_hash)
+        article.add_news_source(news_source)
+        news_source.add_article(article)
+      end
     end
   end
 
