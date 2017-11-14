@@ -9,5 +9,7 @@ require_relative "./news_headlines/source"
 require_relative "./news_headlines/article"
 
 module NewsHeadlines
-  # Your code goes here...
+
+API_KEY = "dfdb90ce65d34e188575203af7c109f8"
+
 end

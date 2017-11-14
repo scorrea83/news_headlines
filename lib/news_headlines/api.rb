@@ -21,7 +21,7 @@ class NewsHeadlines::Api
     #Called by CLI when user selects source to view articles for.
     #argument is a Source object
     #ToDo: change apiKey to some kind of module/class/something constant
-    doc = RestClient.get("https://newsapi.org/v1/articles?source=#{news_source.id}&apiKey=dfdb90ce65d34e188575203af7c109f8")
+    doc = RestClient.get("https://newsapi.org/v1/articles?source=#{news_source.id}&apiKey=#{NewsHeadlines::API_KEY}")
     articles = JSON.parse(doc)
     articles["articles"].each do |article_hash|
       if !NewsHeadlines::Article.find_article(article_hash["title"])
