@@ -1,5 +1,3 @@
-#ToDo
-# => add API key constant somewhere and refer to it in Api.make_articles
 class NewsHeadlines::CLI
 
   attr_accessor :source_list, :article_list
@@ -114,4 +112,3 @@ class NewsHeadlines::CLI
   end
 
 end
-# NewsHeadlines::CLI.new.call

@@ -15,7 +15,7 @@ class NewsHeadlines::Source
       source["id"]
     )
   end
-  #thought of incorporating directly into #initialize but realized this is more flexible, allows for future use of this class to create sources from different non-api data sources?
+  #thought of incorporating directly into #initialize but realized this is more flexible, allows for future use of this class to create sources from different data sources/API's?
 
 
   def initialize(name = nil, description = nil, country = nil, category = nil, url = nil, id = nil)
