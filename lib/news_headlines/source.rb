@@ -43,5 +43,3 @@ class NewsHeadlines::Source
   end
 
 end
-
-puts "Ruby is reading Source.rb"
