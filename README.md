@@ -1,8 +1,6 @@
 # NewsHeadlines
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/news_headlines`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to NewsHeadlines! NewsHeadlines is a Ruby CLI gem that gives you access to the latest news headlines for 60 major news sources and blogs from around the world. NewsHeadlines accesses the NewsAPI (https://newsapi.org/) and presents this information to the user through a CLI.
 
 ## Installation
 
@@ -22,7 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### API Key
+Before running, the you must first change the API_KEY constant found in news_headlines/lib/news_headlines.rb file. Replace the string `"Your NewsAPI key goes here"` with a string containing your NewsAPI key and save the changes to the file.
+
+```ruby
+module NewsHeadlines
+
+API_KEY = "Your NewsAPI key goes here."
+
+end
+```
+
+A NewsAPI key can be obtained for free from NewsAPI at (https://newsapi.org/). NewsAPI does require one to register under a free account and to agree to the terms of use.
+
+```ruby
+require 'news_headlines'
+
+news_headlines #runs the CLI
+```
+Once run, the CLI will present the user with a list of news source categories to choose from.  Once selected, the user is presented with a list of news sources matching the category.  Here the user can select a news source to view its latest headlines.  Next the user can choose from a list of news headlines to view more details on a specific headline. At this point the user can choose to begin the process again or exit the application.
 
 ## Development
 
