@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{news headlines CLI}
   spec.description   = %q{Shows user list of news sources and their latest headlines}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/scorrea83/news_headlines/blob/master/README.md"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "rest-client"
   spec.add_development_dependency "pry"
+  spec.add_runtime_dependency "rest-client"
+  spec.add_runtime_dependency "json"
 end
